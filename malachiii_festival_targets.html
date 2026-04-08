@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malachiii — Festival Target Board 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0A0A0A;
+  --surface: #161616;
+  --surface2: #1C1C1C;
+  --border: rgba(255,255,255,0.07);
+  --border-strong: rgba(255,255,255,0.14);
+  --white: #F5F2EC;
+  --muted: rgba(245,242,236,0.45);
+  --muted2: rgba(245,242,236,0.22);
+  --accent: #C8FF00;
+  --t1: #C8FF00;
+  --t1-bg: rgba(200,255,0,0.08);
+  --t1-border: rgba(200,255,0,0.22);
+  --t2: #00E5FF;
+  --t2-bg: rgba(0,229,255,0.08);
+  --t2-border: rgba(0,229,255,0.22);
+  --t3: #FF9500;
+  --t3-bg: rgba(255,149,0,0.08);
+  --t3-border: rgba(255,149,0,0.22);
+  --radius: 5px;
+  --mono: 'Space Mono', monospace;
+  --display: 'Bebas Neue', sans-serif;
+  --body: 'DM Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--body);
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.hdr {
+  padding: 56px 52px 40px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.hdr::after {
+  content: 'MALACHIII';
+  position: absolute;
+  bottom: -28px;
+  right: -8px;
+  font-family: var(--display);
+  font-size: 180px;
+  color: rgba(255,255,255,0.022);
+  letter-spacing: -4px;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+.hdr-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.hdr-title {
+  font-family: var(--display);
+  font-size: 80px;
+  line-height: 0.88;
+  letter-spacing: 1px;
+  color: var(--white);
+}
+.hdr-title span { color: var(--accent); }
+.hdr-meta { text-align: right; flex-shrink: 0; }
+.meta-block { margin-bottom: 14px; }
+.meta-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--muted2);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.meta-val {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--white);
+}
+.stats-row {
+  display: flex;
+  gap: 36px;
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.stat { display: flex; flex-direction: column; gap: 3px; }
+.stat-lbl {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--muted2);
+  text-transform: uppercase;
+}
+.stat-val {
+  font-family: var(--display);
+  font-size: 30px;
+  color: var(--white);
+  line-height: 1;
+}
+.stat-val.green { color: var(--accent); }
+
+/* MAIN */
+.main {
+  padding: 40px 52px 80px;
+  max-width: 1480px;
+  margin: 0 auto;
+}
+
+/* ALERT */
+.alert {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  background: rgba(200,255,0,0.05);
+  border: 1px solid rgba(200,255,0,0.2);
+  border-radius: var(--radius);
+  margin-bottom: 32px;
+}
+.alert-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: blink 1.6s ease-in-out infinite;
+}
+.alert-txt {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+/* CONTROLS */
+.ctrl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+.ctrl-lbl {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--muted2);
+  text-transform: uppercase;
+  margin-right: 6px;
+}
+.btn {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 7px 16px;
+  border-radius: 2px;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  text-transform: uppercase;
+}
+.btn:hover { border-color: rgba(255,255,255,0.3); color: var(--white); }
+.btn.on-all { background: var(--white); color: var(--black); border-color: var(--white); }
+.btn.on-t1 { background: var(--t1-bg); color: var(--t1); border-color: var(--t1); }
+.btn.on-t2 { background: var(--t2-bg); color: var(--t2); border-color: var(--t2); }
+.btn.on-t3 { background: var(--t3-bg); color: var(--t3); border-color: var(--t3); }
+.btn.on-edm { background: rgba(200,255,0,0.07); color: var(--accent); border-color: var(--accent); }
+.btn.on-intl { background: var(--t3-bg); color: var(--t3); border-color: var(--t3); }
+
+/* SECTION DIVIDERS */
+.sec-hdr {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 36px 0 14px;
+}
+.sec-hdr:first-of-type { margin-top: 0; }
+.sec-name {
+  font-family: var(--display);
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+.sec-name.t1 { color: var(--t1); }
+.sec-name.t2 { color: var(--t2); }
+.sec-name.t3 { color: var(--t3); }
+.sec-rule { flex: 1; height: 1px; background: var(--border); }
+.sec-ct {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted2);
+}
+
+/* TABLE HEADER */
+.tbl-hdr {
+  display: grid;
+  grid-template-columns: 36px 96px 196px 1fr 180px 148px 148px 28px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+}
+.th {
+  padding: 0 16px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--muted2);
+  text-transform: uppercase;
+}
+
+/* CARDS */
+.cards { display: flex; flex-direction: column; gap: 2px; }
+
+.card-wrap {
+  position: relative;
+  cursor: pointer;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: border-color 0.18s;
+  animation: up 0.35s ease both;
+}
+.card-wrap:hover { border-color: var(--border-strong); }
+.card-wrap.open { border-color: var(--border-strong); }
+
+.card-row {
+  display: grid;
+  grid-template-columns: 36px 96px 196px 1fr 180px 148px 148px 28px;
+  min-height: 72px;
+  align-items: stretch;
+}
+
+.cc {
+  padding: 14px 16px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+.cc:last-child { border-right: none; }
+
+.cn { font-family: var(--mono); font-size: 11px; color: var(--muted2); }
+
+.badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  padding: 4px 9px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  width: fit-content;
+}
+.b1 { background: var(--t1-bg); color: var(--t1); border: 1px solid var(--t1-border); }
+.b2 { background: var(--t2-bg); color: var(--t2); border: 1px solid var(--t2-border); }
+.b3 { background: var(--t3-bg); color: var(--t3); border: 1px solid var(--t3-border); }
+
+.fname { font-size: 14px; font-weight: 500; color: var(--white); line-height: 1.3; }
+.fsub { font-family: var(--mono); font-size: 9px; color: var(--muted); letter-spacing: 0.04em; }
+
+.soon {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  padding: 2px 7px;
+  border-radius: 2px;
+  background: rgba(200,255,0,0.14);
+  color: var(--accent);
+  border: 1px solid rgba(200,255,0,0.3);
+  text-transform: uppercase;
+  margin-left: 7px;
+  vertical-align: middle;
+  animation: blink 1.6s ease-in-out infinite;
+}
+
+.summary { font-size: 13px; color: rgba(245,242,236,0.65); line-height: 1.55; }
+.summary strong { color: var(--white); font-weight: 500; }
+
+.dates { font-family: var(--mono); font-size: 11px; color: var(--white); }
+.cost-main { font-family: var(--mono); font-size: 11px; color: var(--white); }
+.fee-main { font-family: var(--mono); font-size: 11px; color: var(--accent); font-weight: 700; }
+
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--muted2);
+  transition: transform 0.2s, color 0.2s;
+  line-height: 1;
+  user-select: none;
+}
+.card-wrap.open .toggle { transform: rotate(45deg); color: var(--accent); }
+
+/* EXPAND */
+.expand {
+  display: none;
+  padding: 20px 20px 20px 68px;
+  border-top: 1px solid var(--border);
+  background: var(--surface2);
+}
+.card-wrap.open .expand { display: block; }
+.expand-body {
+  font-size: 13px;
+  color: rgba(245,242,236,0.68);
+  line-height: 1.75;
+  max-width: 880px;
+}
+.expand-body strong { color: var(--white); font-weight: 500; }
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border-radius: 2px;
+  border: 1px solid var(--border-strong);
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* LEGEND */
+.legend {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.legend-row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.ld { width: 8px; height: 8px; border-radius: 1px; }
+.disclaimer {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted2);
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.ft {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted2);
+  letter-spacing: 0.06em;
+}
+
+/* ANIMATIONS */
+@keyframes up { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  .card-row, .tbl-hdr {
+    grid-template-columns: 36px 88px 170px 1fr 160px 130px 130px 28px;
+  }
+}
+@media (max-width: 900px) {
+  .hdr { padding: 36px 24px 28px; }
+  .hdr-title { font-size: 54px; }
+  .hdr::after { font-size: 110px; }
+  .main { padding: 28px 24px 60px; }
+  footer { padding: 24px; }
+  .tbl-hdr { display: none; }
+  .card-row {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .cc { border-right: none; border-bottom: 1px solid var(--border); }
+  .cc:last-child { border-bottom: none; }
+  .cn { display: none; }
+  .expand { padding: 16px; }
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-inner">
+    <div>
+      <div class="eyebrow">EXBTN Management &mdash; Internal Strategy Document</div>
+      <h1 class="hdr-title">Festival<br>Target <span>Board</span></h1>
+    </div>
+    <div class="hdr-meta">
+      <div class="meta-block">
+        <div class="meta-label">Artist</div>
+        <div class="meta-val">MALACHIII</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Season</div>
+        <div class="meta-val">2026 &mdash; 2027</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Management</div>
+        <div class="meta-val">Brian "Deep" Watters &amp; Big Choc</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Last Updated</div>
+        <div class="meta-val" id="ts"></div>
+      </div>
+    </div>
+  </div>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-lbl">Move — Streams</div><div class="stat-val green">1B+</div></div>
+    <div class="stat"><div class="stat-lbl">Festivals Targeted</div><div class="stat-val">16</div></div>
+    <div class="stat"><div class="stat-lbl">Tier 1 Must-Books</div><div class="stat-val">5</div></div>
+    <div class="stat"><div class="stat-lbl">International Events</div><div class="stat-val">6</div></div>
+    <div class="stat"><div class="stat-lbl">Booking Agency</div><div class="stat-val" style="font-size:22px;">CAA</div></div>
+    <div class="stat"><div class="stat-lbl">Collab Leverage</div><div class="stat-val" style="font-size:20px;">KEINEMUSIK</div></div>
+  </div>
+</header>
+
+<main class="main">
+
+  <div class="alert">
+    <div class="alert-dot"></div>
+    <div class="alert-txt">ACTION REQUIRED &mdash; Coachella W1 opens April 10. CAA must have 2027 booking conversation in motion before this weekend closes. The 1B+ stream on Move is the pitch. Move now.</div>
+  </div>
+
+  <div class="ctrl">
+    <span class="ctrl-lbl">Filter</span>
+    <button class="btn on-all" onclick="flt('all',this)">All (16)</button>
+    <button class="btn" onclick="flt('t1',this)">Tier 1 &mdash; Essential</button>
+    <button class="btn" onclick="flt('t2',this)">Tier 2 &mdash; High Priority</button>
+    <button class="btn" onclick="flt('t3',this)">Tier 3 &mdash; Strategic</button>
+    <button class="btn" onclick="flt('edm',this)">EDM-Forward</button>
+    <button class="btn" onclick="flt('intl',this)">International</button>
+  </div>
+
+  <div class="tbl-hdr">
+    <div class="th">#</div>
+    <div class="th">Tier</div>
+    <div class="th">Festival</div>
+    <div class="th">Why Malachiii</div>
+    <div class="th">Date &amp; Location</div>
+    <div class="th">Fan Ticket Cost</div>
+    <div class="th">Est. Artist Fee</div>
+    <div class="th"></div>
+  </div>
+
+  <div class="cards">
+
+    <!-- ── TIER 1 ── -->
+    <div class="sec-hdr" data-g="t1"><div class="sec-name t1">Tier 1 &mdash; Essential</div><div class="sec-rule"></div><div class="sec-ct">5 events</div></div>
+
+    <div class="card-wrap" data-tier="t1" data-tags="edm" onclick="tog(this)" style="animation-delay:0.04s">
+      <div class="card-row">
+        <div class="cc cn">01</div>
+        <div class="cc"><span class="badge b1">Tier 1</span></div>
+        <div class="cc"><div class="fname">Coachella<span class="soon">This Week</span></div><div class="fsub">Empire Polo Club &mdash; Indio CA</div></div>
+        <div class="cc summary">The cultural moment. EDM is now 45% of the lineup. Move fits Sahara / Do LaB stages exactly. SoCal hometown play. <strong>2027 booking conversation starts now &mdash; before W1 closes.</strong></div>
+        <div class="cc"><div class="dates">Apr 10–12 &amp; 17–19, 2026</div><div class="fsub">Indio, CA &mdash; 250K/wknd</div></div>
+        <div class="cc"><div class="cost-main">Sold out (resale)</div><div class="fsub">Resale $800–$1,500+</div></div>
+        <div class="cc"><div class="fee-main">$150K–$500K</div><div class="fsub">Mid-card slot range</div></div>
+        <div class="cc toggle">+</div>
+      </div>
+      <div class="expand">
+        <div class="expand-body">The single most important cultural moment in North American music. Coachella 2026 has <strong>45% of its lineup in EDM</strong> — the highest in the festival's 27-year history — signaling exactly where the market is heading. Move's sonic DNA fits naturally alongside every Keinemusik-adjacent act on the Sahara and Do LaB stages. Malachiii's SoCal roots make this a homecoming narrative, not just a booking. The 1B+ stream on Move is the leverage point — Goldenvoice needs acts with proven audience pull at scale. <strong>CAA must initiate 2027 Coachella conversations before W1 weekend closes this month.</strong> Goldenvoice books the following year's lineup April through June. The window is right now.</div>
+        <div class="tags"><span class="tag">Pop / EDM Crossover</span><span class="tag">West Coast Home</span><span class="tag">1B Stream Leverage</span><span class="tag">2027 Target</span><span class="tag">Goldenvoice / AEG</span></div>
+      </div>
+    </div>
+
+    <div class="card-wrap" data-tier="t1" data-tags="edm intl" onclick="tog(this)" style="animation-delay:0.08s">
+      <div class="card-row">
+        <div class="cc cn">02</div>
+        <div class="cc"><span class="badge b1">Tier 1</span></div>
+        <div class="cc"><div class="fname">Ultra Music Festival</div><div class="fsub">+ Miami Music Week</div></div>
+        <div class="cc summary">The EDM world's Super Bowl. Keinemusik has direct RESISTANCE stage credibility. MMW surrounding week = 200+ industry events, every DSP in one city. <strong>Activate Keinemusik intro for 2027. Attend WMC regardless.</strong></div>
+        <div class="cc"><div class="dates">Mar 27–29, 2026</div><div class="fsub">Miami, FL &mdash; Bayfront Park &mdash; 165K</div></div>
+        <div class="cc"><div class="cost-main">GA: ~$350–$450</div><div class="fsub">VIP: $700–$1,200</div></div>
+        <div class="cc"><div class="fee-main">$100K–$400K</div><div class="fsub">RESISTANCE stage viable</div></div>
+        <div class="cc toggle">+</div>
+      </div>
+      <div class="expand">
+        <div class="expand-body">The definitive EDM festival. 165,000 attendees from 100+ countries. 2026 featured Eric Prydz, Armin van Buuren, Carl Cox, John Summit — Malachiii belongs in that conversation. The <strong>Keinemusik network is the direct warm introduction</strong> to Ultra's RESISTANCE stage, which books from the same European underground circuit the collective operates in. Beyond the festival itself, Miami Music Week (March 24–29) brings 200+ events and critically — <strong>every major DSP, label, and booking agent in the world is in Miami that week</strong>. Winter Music Conference (WMC) runs simultaneous industry panels. Brian and Big Choc should attend WMC regardless of whether Malachiii is booked, especially with the post-Electric Feel independence transition coming. Target 2027 Ultra booking through Keinemusik introductions — that call should happen now.</div>
+        <div class="tags"><span class="tag">EDM Flagship</span><span class="tag">Keinemusik Direct Intro</span><span class="tag">RESISTANCE Stage</span><span class="tag">Industry Week</span><span class="tag">WMC / DSP Networking</span><span class="tag">2027 Target</span></div>
+      </div>
+    </div>
+
+    <div class="card-wrap" data-tier="t1" data-tags="edm" onclick="tog(this)" style="animation-delay:0.12s">
+      <div class="card-row">
+        <div class="cc cn">03</div>
+        <div class="cc"><span class="badge b1">Tier 1</span></div>
+        <div class="cc"><div class="fname">EDC Las Vegas</div><div class="fsub">Electric Daisy Carnival — 30th Anniv.</div></div>
+        <div class="cc summary">Largest US EDM festival at 400K+ over 3 nights. 30th anniversary = historic booking slate. kineticFIELD or Circuit Grounds both viable. <strong>Hard Summer 2026 is the Insomniac entry point — convert that to EDC LV 2027.</strong></div>
+        <div class="cc"><div class="dates">May 15–17, 2026</div><div class="fsub">Las Vegas Motor Speedway &mdash; 400K+</div></div>
+        <div class="cc"><div class="cost-main">GA: $350–$500</div><div class="fsub">VIP: $800–$2,400</div></div>
+        <div class="cc"><div class="fee-main">$75K–$300K</div><div class="fsub">kineticFIELD or Circuit Grounds</div></div>
+        <div class="cc toggle">+</div>
+      </div>
+      <div class="expand">
+        <div class="expand-body">The largest EDM festival in the United States by attendance — 400,000+ over three dusk-to-dawn nights. 2026 marks Insomniac's <strong>30th anniversary celebration</strong>, meaning production is at an all-time high and the booking slate will be aggressive. Move's euphoric, melodic energy is built for the kineticFIELD mainstage; Circuit Grounds handles the deeper house/techno lane where Keinemusik lives. Malachiii can credibly play either stage. CAA's existing Insomniac relationships make this a realistic direct pitch. The tactical play: <strong>book Hard Summer 2026 first (Inglewood, Insomniac, SoCal hometown, lower risk), use that performance to close EDC LV 2027.</strong> Insomniac books its own family of festivals as a portfolio — one strong booking feeds the next.</div>
+        <div class="tags"><span class="tag">Insomniac / Live Nation</span><span class="tag">400K Attendance</span><span class="tag">30th Anniversary</span><span class="tag">Dusk-to-Dawn Format</span><span class="tag">Hard Summer Entry Point</span></div>
+      </div>
+    </div>
+
+    <div class="card-wrap" data-tier="t1" data-tags="edm intl" onclick="tog(this)" style="animation-delay:0.16s">
+      <div class="card-row">
+        <div class="cc cn">04</div>
+        <div class="cc"><span class="badge b1">Tier 1</span></div>
+        <div class="cc"><div class="fname">Tomorrowland</div><div class="fsub">De Schorre, Boom, Belgium</div></div>
+        <div class="cc summary">Most prestigious EDM festival globally. Global broadcast reaches millions. Keinemusik is a direct warm intro. Critical for post-EF independence positioning. <strong>Activate through Keinemusik — that call should happen this month.</strong></div>
+        <div class="cc"><div class="dates">Jul 17–19 &amp; 24–26, 2026</div><div class="fsub">Boom, Belgium &mdash; 200K, 200+ countries</div></div>
+        <div class="cc"><div class="cost-main">Day: €99 / Wknd: €299+</div><div class="fsub">Global Journey packages avail.</div></div>
+        <div class="cc"><div class="fee-main">$100K–$350K</div><div class="fsub">Freedom or Mainstage tier</div></div>
+        <div class="cc toggle">+</div>
+      </div>
+      <div class="expand">
+        <div class="expand-body">The most prestigious electronic music festival in the world. A global broadcast reaching millions beyond the 200,000 on-site attendees from 200+ countries. A Tomorrowland booking is not just a European festival play — it's a global broadcast event that reaches every electronic music fan simultaneously. <strong>Keinemusik is the key lever.</strong> Adam Port and the collective are deeply embedded in the European festival circuit that feeds Tomorrowland bookings. This relationship should be actively leveraged for direct introductions — it shouldn't just be a credit on a press release. This booking is also the most powerful statement for the post-Electric Feel independence narrative: it signals global artist standing, not US pop act with an EDM crossover record. Target Freedom stage or Mainstage. Aim for 2026 with a 2027 fallback.</div>
+        <div class="tags"><span class="tag">Global Broadcast</span><span class="tag">Keinemusik Direct Intro</span><span class="tag">European Credibility</span><span class="tag">Independence Narrative</span><span class="tag">International</span></div>
+      </div>
+    </div>
+
+    <div class="card-wrap" data-tier="t1" data-tags="" onclick="tog(this)" style="animation-delay:0.2s">
+      <div class="card-row">
+        <div class="cc cn">05</div>
+        <div class="cc"><span class="badge b1">Tier 1</span></div>
+        <div class="cc"><div class="fname">Lollapalooza</div><div class="fsub">Grant Park, Chicago IL</div></div>
+        <div class="cc summary">Best multi-genre crossover in the US. 2026 headliners (Charli XCX, Lorde, Tate McRae) are Malachiii's exact audience. Perry's EDM stage is massive. <strong>C3 also runs ACL — pitch both festivals together as a package.</strong></div>
+        <div class="cc"><div class="dates">Jul 30 – Aug 2, 2026</div><div class="fsub">Chicago, IL &mdash; 100K+/day</div></div>
+        <div class="cc"><div class="cost-main">4-Day GA: ~$375–$450</div><div class="fsub">VIP: $900–$1,600</div></div>
+        <div class="cc"><div class="fee-main">$75K–$250K</div><div class="fsub">Perry's EDM or main stage</div></div>
+        <div class="cc toggle">+</div>
+      </div>
+      <div class="expand">
+        <div class="expand-body">The most genre-fluid major US festival — 100,000 people per day experiencing pop, hip-hop, EDM, and indie simultaneously. 2026 headliners include <strong>Charli XCX, Lorde, Tate McRae, and Smashing Pumpkins</strong>, alongside John Summit and The Chainsmokers — the exact demographic that streams Move. Perry's EDM stage runs concurrent with the mainstage and draws massive crowds independently. C3 Presents (Lollapalooza promoter) also runs Austin City Limits — <strong>the smartest booking play is pitching both festivals as a single package to CAA's C3 contact</strong>, increasing leverage and reducing per-event negotiation friction. The Midwest market is massively underserved for Malachiii's current fanbase — Lollapalooza is how you reach it in one weekend.</div>
+        <div class="tags"><span class="tag">Multi-Genre Crossover</span><span class="tag">Perry's EDM Stage</span><span class="tag">C3 / CAA Relationship</span><span class="tag">Midwest Market</span><span class="tag">100K Daily</span></div>
+      </div>
+    </div>
+
+    <!-- ── TIER 2 ── -->
+    <div class="sec-hdr" data-g="t2" style="margin-top:40px;"><div class="sec-name t2">Tier 2 &mdash; High Priority</div><div class="sec-rule"></div><div class="sec-ct">5 events</div></div>
+
+    <div class="card-wrap" data-tier="t2" data-tags="" onclick="tog(this)" style="animation-delay:0.24s">
+      <div class="card-row">
+        <div class="cc cn">06</div>
+        <div class="cc"><span class="badge b2">Tier 2</span></div>
+        <div class="cc"><div class="fname">Rolling Loud</div><div class="fsub">Camping World Stadium, Orlando FL</div></div>
+        <div class="cc summary">World's largest hip-hop festival. Don Toliver, Playboi Carti on 2026 bill — Malachiii's peer set. Protects hip-hop lane credibility. International editions (Thailand, Germany, Portugal) also viable targets.</div>
+        <div class="cc"><div class="dates">May 8–10, 2026</div><div class="fsub">Orlando, FL &mdash; All ages</div></div>
+        <div class="cc"><div class="cost-main">GA: $279</div><div class="fsub">VIP: $599+ / GA+ tiers</div></div>
+        <div class="cc"><div class="fee-main">$50K–$150K</div><div class="fsub">Mid-card slot</div></div>
+        <div class="cc toggle">+</div>
+      </div>
+      <div class="expand">
+        <div class="expand-body">The world's largest hip-hop festival. This booking is about <strong>protecting and activating Malachiii's hip-hop identity</strong> while the EDM crossover grows — the rap audience shouldn't feel abandoned for festival circuit crossover plays. 2026 headliners include Playboi Carti, YoungBoy Never Broke Again, and Don Toliver — directly adjacent to Malachiii's lane and peer group. Rolling Loud has consolidated to one US date in 2026, so competition for slots is higher, but Malachiii's pop-EDM crossover profile is exactly what the festival benefits from adding to a hip-hop-heavy card. International Rolling Loud editions in Thailand, Germany, Portugal, and Australia are lower-competition alternatives for international market entry.</div>
+        <div class="tags"><span class="tag">Hip-Hop Credibility</span><span class="tag">Peer Set Alignment</span><span class="tag">International Editions</span><span class="tag">Brand Identity Protection</span></div>
+      </div>
+    </div>
+
+    <div class="card-wrap" data-tier="t2" data-tags="" onclick="tog(this)" style="animation-delay:0.28s">
+      <div class="card-row">
+        <div class="cc cn">07</div>
+        <div class="cc"><span class="badge b2">Tier 2</span></div>
+        <div class="cc"><div class="fname">Governors Ball</div><div class="fsub">Flushing Meadows, New York NY</div></div>
+        <div class="cc summary">NYC = every major DSP HQ, label, and press outlet in one market. 2026 bill: A$AP Rocky, Baby Keem, Kali Uchis, Major Lazer. <strong>Highest ROI per dollar spent outside of Coachella from a media/industry standpoint.</strong></div>
+        <div class="cc"><div class="dates">Jun 5–7, 2026</div><div class="fsub">New York, NY &mdash; ~50K/day</div></div>
+        <div class="cc"><div class="cost-main">GA: ~$175–$350</div><div class="fsub">VIP: $500–$800</div></div>
+        <div class="cc"><div class="fee-main">$40K–$125K</div><div class="fsub">Mid-card pop / EDM</div></div>
+        <div class="cc toggle">+</div>
+      </div>
+      <div class="expand">
+        <div class="expand-body">New York City is the most media-dense market in the world for music. <strong>Every major DSP has offices there, every major press outlet is based there, every major label HQ is within miles of this stage.</strong> A Governors Ball booking puts Malachiii directly in front of Spotify's editorial team, Apple Music's curators, and the entire New York press ecosystem in one weekend. 2026 bill includes A$AP Rocky, Baby Keem, Kali Uchis, and Major Lazer — Malachiii's exact peer group and a lineup that validates his crossover positioning. The EDM stage adds depth. This is the single highest ROI booking per dollar spent, outside of Coachella, from a pure media and industry relationship standpoint.</div>
+        <div class="tags"><span class="tag">DSP HQ Market</span><span class="tag">Media Exposure</span><span class="tag">Industry Face Time</span><span class="tag">Peer Alignment</span><span class="tag">NYC Press</span></div>
+      </div>
+    </div>
+
+    <div class="card-wrap" data-tier="t2" data-tags="edm" onclick="tog(this)" style="animation-delay:0.32s">
+      <div class="card-row">
+        <div class="cc cn">08</div>
+        <div class="cc"><span class="badge b2">Tier 2</span></div>
+        <div class="cc"><div class="fname">Bonnaroo</div><div class="fsub">Bonnaroo Farm, Manchester TN</div></div>
+        <div class="cc summary">RÜFÜS DU SOL and Skrillex headlining — perfectly adjacent. That Tent EDM stage is a career launcher. <strong>Camping crowds convert to super fans.</strong> Southeast and Midwest market access in one weekend.</div>
+        <div class="cc"><div class="dates">Jun 11–14, 2026</div><div class="fsub">Manchester, TN &mdash; 80K+</div></div>
+        <div class="cc"><div class="cost-main">GA: ~$325–$500</div><div class="fsub">VIP: $750–$1,200</div></div>
+        <div class="cc"><div class="fee-main">$40K–$125K</div><div class="fsub">Which Stage or That Tent</div></div>
+        <div class="cc toggle">+</div>
+      </div>
+      <div class="expand">
+        <div class="expand-body">Bonnaroo's audience is some of the most music-obsessive and artist-loyal in the US. 2026 headliners include <strong>RÜFÜS DU SOL and Skrillex</strong> — the exact sonic neighborhood Malachiii occupies. That Tent (the dedicated EDM stage) has launched countless mid-card careers, and the camping format means the audience is fully immersed for the entire weekend — no half-attention, no scrolling away. This is where super fans are made. Deep South and Midwest markets that SoCal acts rarely penetrate. Also an important Live Nation / Superstruct relationship builder, which feeds bookings across their broader festival portfolio.</div>
+        <div class="tags"><span class="tag">Super Fan Conversion</span><span class="tag">Camping Format</span><span class="tag">That Tent EDM Stage</span><span class="tag">South / Midwest Market</span><span class="tag">Live Nation</span></div>
+      </div>
+    </div>
+
+    <div class="card-wrap" data-tier="t2" data-tags="" onclick="tog(this)" style="animation-delay:0.36s">
+      <div class="card-row">
+        <div class="cc cn">09</div>
+        <div class="cc"><span class="badge b2">Tier 2</span></div>
+        <div class="cc"><div class="fname">Outside Lands</div><div class="fsub">Golden Gate Park, San Francisco CA</div></div>
+        <div class="cc summary">West Coast home turf. SF tech/streaming industry crowd = Spotify, Apple Music employees in attendance. Lands End EDM stage concurrent with mainstage. Malhaus lifestyle brand aligns with the festival's culinary and experiential identity.</div>
+        <div class="cc"><div class="dates">Aug 7–9, 2026</div><div class="fsub">San Francisco, CA &mdash; ~65K/day</div></div>
+        <div class="cc"><div class="cost-main">GA: ~$175–$425</div><div class="fsub">VIP: $600–$1,100</div></div>
+        <div class="cc"><div class="fee-main">$40K–$150K</div><div class="fsub">Lands End EDM stage</div></div>
+        <div class="cc toggle">+</div>
+      </div>
+      <div class="expand">
+        <div class="expand-body">Outside Lands is the Bay Area's cultural crown jewel and the West Coast's second-most-important festival after Coachella. The SF tech industry audience — including Spotify, Apple Music, and YouTube Music employees — makes this a uniquely high-value DSP relationship event. 2026 headliners include Lorde, A$AP Rocky, and Major Lazer. The Lands End stage runs parallel to the mainstage, creating strong crossover attendance. The culinary and lifestyle-forward ethos of Outside Lands aligns well with the <strong>Malhaus experiential brand vision</strong> — this is where that identity gets its West Coast launch moment beyond music.</div>
+        <div class="tags"><span class="tag">West Coast Home Turf</span><span class="tag">DSP Industry Crowd</span><span class="tag">Lands End EDM Stage</span><span class="tag">Malhaus Brand Fit</span></div>
+      </div>
+    </div>
+
+    <div class="card-wrap" data-tier="t2" data-tags="" onclick="tog(this)" style="animation-delay:0.4s">
+      <div class="card-row">
+        <div class="cc cn">10</div>
+        <div class="cc"><span class="badge b2">Tier 2</span></div>
+        <div class="cc"><div class="fname">Austin City Limits</div><div class="fsub">Zilker Park, Austin TX</div></div>
+        <div class="cc summary">Texas is a massive underserved market. Fall timing = post-summer release momentum. Two-weekend format doubles impressions. <strong>C3 also runs Lollapalooza — pitch both as a single package deal to maximize negotiating leverage.</strong></div>
+        <div class="cc"><div class="dates">Oct 2–4 &amp; 9–11, 2026</div><div class="fsub">Austin, TX &mdash; 75K+/day</div></div>
+        <div class="cc"><div class="cost-main">GA: ~$175–$350</div><div class="fsub">VIP: $500–$900</div></div>
+        <div class="cc"><div class="fee-main">$40K–$125K</div><div class="fsub">Samsung Stage or EDM tent</div></div>
+        <div class="cc toggle">+</div>
+      </div>
+      <div class="expand">
+        <div class="expand-body">Texas is one of the most underserved major US markets for Malachiii's fanbase, and Austin City Limits is the flagship entry point. The fall timing is strategically important — it sits post-summer release cycle, meaning any Q3 music will still be fresh when Malachiii hits the stage. The two-weekend format mirrors Coachella, effectively doubling impression count for the same booking fee. <strong>C3 Presents runs both ACL and Lollapalooza</strong> — the smartest play is pitching both festivals together as a package through CAA's C3 contact, increasing leverage and reducing per-event friction. Austin's growing music industry ecosystem also provides bonus networking opportunities, especially as the SXSW ecosystem expands year-round.</div>
+        <div class="tags"><span class="tag">Texas Market</span><span class="tag">C3 Package Deal w/ Lolla</span><span class="tag">Two Weekends</span><span class="tag">Post-Summer Release Timing</span></div>
+      </div>
+    </div>
+
+    <!-- ── TIER 3 ── -->
+    <div class="sec-hdr" data-g="t3" style="margin-top:40px;"><div class="sec-name t3">Tier 3 &mdash; Strategic</div><div class="sec-rule"></div><div class="sec-ct">6 events</div></div>
+
+    <div class="card-wrap" data-tier="t3" data-tags="intl edm" onclick="tog(this)" style="animation-delay:0.44s">
+      <div class="card-row">
+        <div class="cc cn">11</div>
+        <div class="cc"><span class="badge b3">Tier 3</span></div>
+        <div class="cc"><div class="fname">Primavera Sound</div><div class="fsub">Parc del Fòrum, Barcelona, Spain</div></div>
+        <div class="cc summary">European tastemaker credibility — where critics and gatekeepers go. 2026 bill: Doja Cat, The Cure, The xx. Keinemusik network transfers here directly. <strong>Shapes how the global industry perceives Malachiii's artistic ambition going into independence.</strong></div>
+        <div class="cc"><div class="dates">Jun 3–7, 2026</div><div class="fsub">Barcelona, Spain &mdash; ~65K/day</div></div>
+        <div class="cc"><div class="cost-main">GA: €225–€350</div><div class="fsub">Day passes available</div></div>
+        <div class="cc"><div class="fee-main">$50K–$150K</div><div class="fsub">Depends on slot / stage</div></div>
+        <div class="cc toggle">+</div>
+      </div>
+      <div class="expand">
+        <div class="expand-body">Primavera Sound is where the music industry's critical and curatorial class sets the agenda for the rest of the year. A booking here generates a category of press — European broadsheets, Pitchfork, NME, Resident Advisor — that US festival slots simply don't activate. 2026 headliners include Doja Cat, Addison Rae, The Cure, and The xx — a lineup that validates exactly the pop-meets-electronic-meets-alternative space Malachiii operates in. The Keinemusik connection to Barcelona's club and festival circuit provides warm introductions to the booking team. <strong>This is a long-term credibility investment more than a revenue play</strong> — but it materially shapes how the industry perceives Malachiii's artistic ambition and seriousness heading into full independence from Electric Feel.</div>
+        <div class="tags"><span class="tag">European Credibility</span><span class="tag">Critical Press</span><span class="tag">International</span><span class="tag">Keinemusik Network</span><span class="tag">Artistic Positioning</span></div>
+      </div>
+    </div>
+
+    <div class="card-wrap" data-tier="t3" data-tags="edm" onclick="tog(this)" style="animation-delay:0.48s">
+      <div class="card-row">
+        <div class="cc cn">12</div>
+        <div class="cc"><span class="badge b3">Tier 3</span></div>
+        <div class="cc"><div class="fname">Electric Forest</div><div class="fsub">Sherwood Forest, Rothbury MI</div></div>
+        <div class="cc summary">Most loyal EDM fan community in the US. Camping / immersive format = super fan conversion. Headliners: ILLENIUM, GRiZ, Chris Lake. <strong>Malhaus live concept was built for this environment.</strong></div>
+        <div class="cc"><div class="dates">Jun 25–28, 2026</div><div class="fsub">Rothbury, MI &mdash; ~40K/day</div></div>
+        <div class="cc"><div class="cost-main">GA: ~$350–$500</div><div class="fsub">VIP: $700–$1,200</div></div>
+        <div class="cc"><div class="fee-main">$30K–$100K</div><div class="fsub">Ranch Arena or Forest stage</div></div>
+        <div class="cc toggle">+</div>
+      </div>
+      <div class="expand">
+        <div class="expand-body">Electric Forest has the most intensely loyal fan community of any US EDM festival — attendees return year after year and form deep, lasting relationships with the artists they discover here. 2026 headliners include ILLENIUM, GRiZ, Chris Lake, and KASKADE, putting Move's sonic DNA squarely in the lineup's wheelhouse. The immersive Sherwood Forest environment — art installations, secret stages, camping — is the closest US equivalent to Tomorrowland's experiential model. <strong>The Malhaus live concept was made for this setting.</strong> A fully produced Malhaus set at Electric Forest would generate years of fan content, social virality, and community loyalty. Booking here is a statement about artistic depth — not just streaming numbers.</div>
+        <div class="tags"><span class="tag">Super Fan Loyalty</span><span class="tag">Malhaus Environment Fit</span><span class="tag">Immersive Format</span><span class="tag">EDM Core Base</span></div>
+      </div>
+    </div>
+
+    <div class="card-wrap" data-tier="t3" data-tags="edm" onclick="tog(this)" style="animation-delay:0.52s">
+      <div class="card-row">
+        <div class="cc cn">13</div>
+        <div class="cc"><span class="badge b3">Tier 3</span></div>
+        <div class="cc"><div class="fname">Hard Summer</div><div class="fsub">Hollywood Park, Inglewood CA</div></div>
+        <div class="cc summary">SoCal hometown Insomniac event. Low risk, high Insomniac goodwill. 2025 headliners: Gesaffelstein, Dom Dolla, Feid. <strong>Book this in 2026 to close EDC Las Vegas in 2027. That's the play.</strong></div>
+        <div class="cc"><div class="dates">Summer 2026 (TBD)</div><div class="fsub">Inglewood, CA &mdash; ~65K/day</div></div>
+        <div class="cc"><div class="cost-main">GA: ~$150–$250</div><div class="fsub">VIP: $400–$700</div></div>
+        <div class="cc"><div class="fee-main">$25K–$100K</div><div class="fsub">Main or secondary stage</div></div>
+        <div class="cc toggle">+</div>
+      </div>
+      <div class="expand">
+        <div class="expand-body">Hard Summer is Insomniac's flagship SoCal festival — Malachiii's hometown circuit. This is the strategic entry point for building the Insomniac relationship before pitching EDC Las Vegas. 2025 headliners included Gesaffelstein, Dom Dolla, Feid, and Kaytranada — exactly Malachiii's lane. A strong Hard Summer performance directly feeds the EDC LV conversation because Insomniac promotes both festivals. Lower risk, lower fee, hometown crowd, maximum Insomniac goodwill. <strong>Book Hard Summer 2026. Convert to EDC LV 2027. That's the complete play.</strong></div>
+        <div class="tags"><span class="tag">SoCal Hometown</span><span class="tag">Insomniac Entry Point</span><span class="tag">EDC LV Pipeline</span><span class="tag">Low Risk / High Leverage</span></div>
+      </div>
+    </div>
+
+    <div class="card-wrap" data-tier="t3" data-tags="intl edm" onclick="tog(this)" style="animation-delay:0.56s">
+      <div class="card-row">
+        <div class="cc cn">14</div>
+        <div class="cc"><span class="badge b3">Tier 3</span></div>
+        <div class="cc"><div class="fname">Creamfields</div><div class="fsub">Daresbury Estate, UK</div></div>
+        <div class="cc summary">UK market entry. Move's European streaming is strong. EDM-only format = full alignment. Pairs with Tomorrowland for a European summer run. <strong>BBC Radio 1 actively covers Creamfields — performance here generates ongoing UK airplay.</strong></div>
+        <div class="cc"><div class="dates">Aug 20–23, 2026</div><div class="fsub">Daresbury, UK &mdash; 70K+/day</div></div>
+        <div class="cc"><div class="cost-main">GA: ~£200–£350</div><div class="fsub">VIP: £500–£900</div></div>
+        <div class="cc"><div class="fee-main">$40K–$125K</div><div class="fsub">Steel Yard or Arc stage</div></div>
+        <div class="cc toggle">+</div>
+      </div>
+      <div class="expand">
+        <div class="expand-body">The UK is one of the strongest markets for Move's streaming geography, and Creamfields is the definitive UK electronic music festival. An EDM-only festival means every single attendee is there for exactly the genre Malachiii is representing. Pairs perfectly with Tomorrowland for a <strong>European summer run: Belgium in July, UK in August</strong>, with European press running across both. BBC Radio 1 — the UK's most important dance music platform — actively covers Creamfields, meaning a strong performance here generates ongoing airplay and playlist adds beyond the festival weekend itself. Carl Cox and John Summit are Creamfields regulars — the crowd knows quality when it sees it.</div>
+        <div class="tags"><span class="tag">UK Market Entry</span><span class="tag">BBC Radio 1</span><span class="tag">European Summer Run</span><span class="tag">EDM-Only Format</span><span class="tag">International</span></div>
+      </div>
+    </div>
+
+    <div class="card-wrap" data-tier="t3" data-tags="edm" onclick="tog(this)" style="animation-delay:0.6s">
+      <div class="card-row">
+        <div class="cc cn">15</div>
+        <div class="cc"><span class="badge b3">Tier 3</span></div>
+        <div class="cc"><div class="fname">Movement Detroit</div><div class="fsub">Hart Plaza, Detroit MI</div></div>
+        <div class="cc summary">Most credible US underground EDM event. Signals to the DJ / producer community that Malachiii is a serious artist, not a pop act riding a single. Keinemusik runs deep here. <strong>Long-term credibility investment — not a 2026 revenue play.</strong></div>
+        <div class="cc"><div class="dates">May 2027 (Memorial Day wknd)</div><div class="fsub">Detroit, MI &mdash; ~100K</div></div>
+        <div class="cc"><div class="cost-main">GA: ~$100–$200</div><div class="fsub">Weekend pass</div></div>
+        <div class="cc"><div class="fee-main">$20K–$75K</div><div class="fsub">Underground credibility play</div></div>
+        <div class="cc toggle">+</div>
+      </div>
+      <div class="expand">
+        <div class="expand-body">Movement is where the electronic music community's most discerning audience gathers — DJs, producers, selectors, and the fans who built the culture. A booking here sends an unambiguous signal to the DJ and producer community that <strong>Malachiii is a legitimate electronic music artist, not a pop act riding a single.</strong> Keinemusik's network runs deep in the house/techno underground that Movement represents — their advocacy within this community carries real weight. This is not a 2026 revenue play — it's a 2027 career arc investment that pays dividends in credibility, peer respect, and DJ community advocacy for years. Lower fee, maximum long-term strategic value.</div>
+        <div class="tags"><span class="tag">Underground Credibility</span><span class="tag">DJ Community Signal</span><span class="tag">Keinemusik Network</span><span class="tag">2027 Target</span><span class="tag">Long-Term Investment</span></div>
+      </div>
+    </div>
+
+    <div class="card-wrap" data-tier="t3" data-tags="" onclick="tog(this)" style="animation-delay:0.64s">
+      <div class="card-row">
+        <div class="cc cn">16</div>
+        <div class="cc"><span class="badge b3">Tier 3</span></div>
+        <div class="cc"><div class="fname">SXSW</div><div class="fsub">Multiple venues, Austin TX</div></div>
+        <div class="cc summary">Industry play more than artist play. Every DSP, label, booking agent, and music supervisor converges in Austin. <strong>"Next chapter / fully independent" narrative lands best here, in front of the exact decision-makers who need to hear it.</strong></div>
+        <div class="cc"><div class="dates">Mar 2027 (annual, 10 days)</div><div class="fsub">Austin, TX &mdash; ~400K total</div></div>
+        <div class="cc"><div class="cost-main">Industry badge: $1,500–$3K</div><div class="fsub">Artist: often brand / DSP funded</div></div>
+        <div class="cc"><div class="fee-main">$5K–$30K</div><div class="fsub">Often Spotify / Apple funded</div></div>
+        <div class="cc toggle">+</div>
+      </div>
+      <div class="expand">
+        <div class="expand-body">SXSW is primarily an industry play — the place where <strong>every DSP, major label, independent distributor, booking agent, music supervisor, and music journalist converges in one city for 10 days</strong>. For Brian and Big Choc managing the post-Electric Feel transition, SXSW 2027 is a critical networking environment regardless of whether Malachiii performs. If he does perform, it needs to be a <strong>fully produced, Malhaus-level showcase</strong> — not a thrown-together club set. SXSW showcases are often brand or DSP-funded (Spotify, Apple Music, Amazon), meaning the fee conversation is structurally different from festival bookings. Dense sync licensing and brand partnership opportunities throughout the 10 days. This is where the independence narrative gets told to the people who need to hear it most.</div>
+        <div class="tags"><span class="tag">Industry Networking</span><span class="tag">DSP / Label Meetings</span><span class="tag">Independence Narrative</span><span class="tag">Brand Partnerships</span><span class="tag">Sync Licensing</span><span class="tag">2027 Target</span></div>
+      </div>
+    </div>
+
+  </div><!-- /cards -->
+
+  <!-- LEGEND + DISCLAIMER -->
+  <div class="legend">
+    <div class="legend-row">
+      <div class="legend-item"><div class="ld" style="background:var(--t1)"></div>Tier 1 — Essential, must target</div>
+      <div class="legend-item"><div class="ld" style="background:var(--t2)"></div>Tier 2 — High priority, strong ROI</div>
+      <div class="legend-item"><div class="ld" style="background:var(--t3)"></div>Tier 3 — Strategic, credibility + market</div>
+      <div class="legend-item"><div class="ld" style="background:var(--accent)"></div>Artist fees = estimated mid-card slot range</div>
+    </div>
+    <div class="disclaimer">
+      Artist fee estimates based on comparable acts at similar career stage. All fees subject to negotiation — slot position, exclusivity radius, and market timing materially affect final number.<br>
+      Gary Greenberg to review all festival contracts for exclusivity radius clauses and term conflicts with existing Electric Feel obligations before any signing.<br>
+      Click any row to expand full strategic notes. Prepared by EXBTN Management — Brian "Deep" Watters &amp; Big Choc. Confidential — do not distribute.
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="ft">EXBTN Management &mdash; Malachiii Festival Strategy 2026–2027 &mdash; Confidential</div>
+  <div class="ft" id="ft-date">Click any row to expand strategic rationale</div>
+</footer>
+
+<script>
+document.getElementById('ts') && (document.getElementById('ts').textContent = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}));
+document.getElementById('ft-date') && (document.getElementById('ft-date').textContent = 'Updated ' + new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}));
+
+function tog(w) {
+  const open = w.classList.toggle('open');
+}
+
+function flt(type, btn) {
+  document.querySelectorAll('.btn').forEach(b => b.className = 'btn');
+  btn.classList.add('on-' + type);
+  document.querySelectorAll('.card-wrap').forEach(w => {
+    const tier = w.dataset.tier;
+    const tags = (w.dataset.tags || '').split(' ');
+    let show = type === 'all' ||
+      (type === 't1' && tier === 't1') ||
+      (type === 't2' && tier === 't2') ||
+      (type === 't3' && tier === 't3') ||
+      (type === 'edm' && tags.includes('edm')) ||
+      (type === 'intl' && tags.includes('intl'));
+    w.style.display = show ? '' : 'none';
+  });
+  ['t1','t2','t3'].forEach(g => {
+    const h = document.querySelector(`.sec-hdr[data-g="${g}"]`);
+    if (!h) return;
+    const vis = Array.from(document.querySelectorAll(`.card-wrap[data-tier="${g}"]`)).some(w => w.style.display !== 'none');
+    h.style.display = vis ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
